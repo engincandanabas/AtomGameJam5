@@ -13,6 +13,7 @@ public class EnemyManager : Enemy
     void Awake()
     {
         SetupEnemy();
+        // baslangicta saldiri
         StartCoroutine(Attack());
     }
     void Start()
