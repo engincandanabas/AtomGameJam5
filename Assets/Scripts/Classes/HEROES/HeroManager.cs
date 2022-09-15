@@ -7,7 +7,7 @@ public class HeroManager : MonoBehaviour
     public enum HeroTYpe { mouse,dog,goblin,ogre,ork,gnoll}
     public HeroTYpe type;
 
-    public Enemy _heroScriptable;
+    public Type _heroScriptable;
     public int yakin_etki;
     public int uzak_etki;
     public int iyilestirme;
@@ -15,6 +15,9 @@ public class HeroManager : MonoBehaviour
     public int defans;
     public int kacinma;
     public int can;
+
+    // target bulundugu odadan random cekilcek
+    [SerializeField] private EnemyManager _target;
     public void Awake()
     {
         InitializeVariables();
@@ -29,5 +32,14 @@ public class HeroManager : MonoBehaviour
         kacinma = _heroScriptable.kacinma;
         defans = _heroScriptable.defans;
         can = _heroScriptable.can;
+    }
+    public IEnumerator Attack()
+    {
+
+        
+        // atak bitti 
+        yield return new WaitForSeconds(1);
+        StartCoroutine(_target.Attack());
+
     }
 }

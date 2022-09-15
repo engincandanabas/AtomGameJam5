@@ -9,9 +9,11 @@ public class EnemyManager : Enemy
     public Type[] _cinsiyetler;
     public Type[] _silahlar;
 
+    [SerializeField] private HeroManager _target;
     void Awake()
     {
         SetupEnemy();
+        StartCoroutine(Attack());
     }
     void Start()
     {
@@ -38,5 +40,13 @@ public class EnemyManager : Enemy
         this.can+=_irk.can+_sinif.can+_cinsiyet.can+_silah.can;
         
         Debug.Log(this.gameObject.name+" INFO \n Irk:"+_irk.name+"\nSınıf:"+_sinif.name+"\nCinsiyet:"+_cinsiyet.name+"\nSilah:"+_silah.name+"");
+    }
+    public IEnumerator Attack()
+    {
+
+        // atak bitti 
+        yield return new WaitForSeconds(1);
+        StartCoroutine(_target.Attack());
+
     }
 }
