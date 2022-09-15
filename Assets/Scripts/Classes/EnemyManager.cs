@@ -37,6 +37,6 @@ public class EnemyManager : Enemy
         this.kacinma+=_irk.kacinma+_sinif.kacinma+_cinsiyet.kacinma+_silah.kacinma;
         this.can+=_irk.can+_sinif.can+_cinsiyet.can+_silah.can;
         
-        Debug.Log("Enemy INFO \n Irk:"+_irk.name+"\nSınıf:"+_sinif.name+"\nCinsiyet:"+_cinsiyet.name+"\nSilah:"+_silah.name+"");
+        Debug.Log(this.gameObject.name+" INFO \n Irk:"+_irk.name+"\nSınıf:"+_sinif.name+"\nCinsiyet:"+_cinsiyet.name+"\nSilah:"+_silah.name+"");
     }
 }
