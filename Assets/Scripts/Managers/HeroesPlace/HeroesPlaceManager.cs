@@ -48,31 +48,12 @@ public class HeroesPlaceManager : MonoBehaviour
                         if(hit.collider.CompareTag("Room"))
                         {
                             // odaya yerlestirme islemi gercekleþti
-                            Debug.Log("Odaya Isteginde Bulunuldu");
-                            // atama yapilan odanin scriptinde degisiklik yapilma yeri
-                            var _room=hit.transform.gameObject.GetComponent<Room>();
-                            if(_room!=null)
-                            {
-                                if (_room.CurrentCapacity < _room.MaxCapacity)
-                                {
-                                    // odanin yerlestirme kapasitesi dolmamis
-                                    // yerlestirme yapilabilir
-
-                                    // parent objenin cocugu olarak ata
-                                    _preview.transform.parent = hit.transform.GetChild(0);
-                                    // parent objenin listesine heroyu ata
-                                    _room.heroManagers.Add(_preview.GetComponent<HeroManager>());
-                                    // current kapasitiyi artýr
-                                    _room.CurrentCapacity++;
-                                    // isimiz bitti
-                                    _preview = null;
-                                }
-                                else
-                                {
-                                    // kapasite dolmus
-                                    Debug.Log("Oda Kapasitesi Dolu");
-                                }
-                            } 
+                            Debug.Log("Odaya yerlestirildi");
+                            _preview.transform.parent=hit.transform.GetChild(0);
+                            
+                            // isimiz bitti
+                            _preview = null;
+                            
                         }
                     }
                 }
