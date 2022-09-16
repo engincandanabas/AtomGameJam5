@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class HeroManager : MonoBehaviour
 {
     public enum HeroTYpe { mouse,dog,goblin,ogre,ork,gnoll}
     public HeroTYpe type;
+
+    public GameObject floatingPoint;
 
     public Type _heroScriptable;
     public int yakin_etki;
@@ -16,11 +19,25 @@ public class HeroManager : MonoBehaviour
     public int kacinma;
     public int can;
 
+    private int mevcutCan;
+
     // target bulundugu odadan random cekilcek
     [SerializeField] private EnemyManager _target;
     public void Awake()
     {
         InitializeVariables();
+    }
+    public void Setup(int damageAmount, string situation)
+    {
+
+        if (damageAmount == -1)
+        {
+            floatingPoint.GetComponent<TextMeshPro>().SetText(situation);
+        }
+        else
+        {
+            floatingPoint.GetComponent<TextMeshPro>().SetText(damageAmount.ToString());
+        }
     }
     void InitializeVariables()
     {
@@ -33,6 +50,23 @@ public class HeroManager : MonoBehaviour
         defans = _heroScriptable.defans;
         can = _heroScriptable.can;
     }
+
+    private void Update()
+    {
+        if (can == mevcutCan)
+        {
+
+        }
+        else
+        {
+            GameObject popup = Instantiate(floatingPoint, transform.position, Quaternion.identity);
+
+            mevcutCan = this.can;
+            Destroy(popup, 20f);
+        }
+    }
+
+
     public IEnumerator Attack()
     {
         Debug.Log(_heroScriptable.name);
@@ -41,13 +75,18 @@ public class HeroManager : MonoBehaviour
         {
             if (Random.Range(0, yakin_etki) > _target.kacinma) // ýska mý deðil mi 
             {     // target a hasar ver 
+                Setup(yakin_etki,"a");
                 _target.can -= (yakin_etki - _target.defans);
+                
+                
                 Debug.Log(_target.name + " caný " + _target.can.ToString());
                 if (_target.can <= 0)
                     Destroy(_target.gameObject);
             }
             else
             {
+                Setup(-1, "miss");
+                Instantiate(floatingPoint, _target.transform.position, Quaternion.identity);
                 Debug.Log(_target.name + " kaçýndý");
             }
 
@@ -56,7 +95,8 @@ public class HeroManager : MonoBehaviour
         {
             if (Random.Range(0, 10) == 5)   // Rastgele bir sayý
             {
-                // target a hasar ver 
+                // target a hasar ver
+                Setup(yakin_etki,"a");
                 _target.can -= (yakin_etki - _target.defans);
                 Debug.Log(_target.name + " caný " + _target.can.ToString());
                 if (_target.can <= 0)
