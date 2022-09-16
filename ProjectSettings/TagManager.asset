@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Waypoints
   - Room
+  - Door
   layers:
   - Default
   - TransparentFX
