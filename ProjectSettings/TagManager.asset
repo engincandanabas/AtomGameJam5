@@ -4,8 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< Updated upstream
   - Waypoints
   - Room
+=======
+  - Up
+  - Left
+  - Down
+  - Right
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -42,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer 1
+    uniqueID: 3812524837
     locked: 0
