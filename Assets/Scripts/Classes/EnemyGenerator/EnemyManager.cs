@@ -9,6 +9,8 @@ public class EnemyManager : Enemy
     public Type[] _cinsiyetler;
     public Type[] _silahlar;
 
+    string silahName;
+
     [SerializeField] private HeroManager _target;
     void Awake()
     {
@@ -39,11 +41,47 @@ public class EnemyManager : Enemy
         this.defans+=_irk.defans+_sinif.defans+_cinsiyet.defans+_silah.defans;
         this.kacinma+=_irk.kacinma+_sinif.kacinma+_cinsiyet.kacinma+_silah.kacinma;
         this.can+=_irk.can+_sinif.can+_cinsiyet.can+_silah.can;
-        
+
+        silahName = _silah.name;
+
         Debug.Log(this.gameObject.name+" INFO \n Irk:"+_irk.name+"\nSınıf:"+_sinif.name+"\nCinsiyet:"+_cinsiyet.name+"\nSilah:"+_silah.name+"");
     }
     public IEnumerator Attack()
     {
+        // yakın saldırı mı uzak saldırımı belirle
+        int etki = yakin_etki;
+
+        if (silahName == "Bow-Arrow")
+            etki = uzak_etki;
+        else if (silahName == "Sword" || silahName == "Shield")
+            etki = yakin_etki;
+        if (etki - _target.kacinma > 0)
+        {
+            if (Random.Range(0, etki) > _target.kacinma) // ıska mı değil mi 
+            {     // target a hasar ver 
+                _target.can -= (etki - _target.defans);
+                Debug.Log(_target.name + " canı " + _target.can.ToString());
+                if (_target.can <= 0)
+                    Destroy(_target.gameObject);
+            }
+            else
+            {
+                Debug.Log(_target.name + " kaçındı");
+            }
+
+        }
+        else
+        {
+            if (Random.Range(0, 10) == 5)   // Rastgele bir sayı
+            {
+                // target a hasar ver 
+                _target.can -= (etki - _target.defans);
+                Debug.Log(_target.name + " canı " + _target.can.ToString());
+                if (_target.can <= 0)
+                    Destroy(_target.gameObject);
+            }
+        }
+
 
         // atak bitti 
         yield return new WaitForSeconds(1);
