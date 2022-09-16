@@ -7,7 +7,6 @@ public class Room : MonoBehaviour
 {
     [SerializeField] private int _maxCapacity=4;
     [SerializeField] private int _currentCapacity=0;
-    [SerializeField] private int _passCount;
     [SerializeField] private VerticalLayoutGroup _verticalLayoutGroup;
 
     public int MaxCapacity { get { return _maxCapacity; }}

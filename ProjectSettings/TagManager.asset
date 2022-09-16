@@ -4,10 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Hero
-  - Room
   - Waypoints
+  - Room
   - Door
+<<<<<<< Updated upstream
+=======
+  - Right
+  - Down
+  - Left
+  - Up
+  - Hero
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -15,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Hero
   - 
   - 
   - 
