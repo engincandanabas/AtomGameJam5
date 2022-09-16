@@ -8,15 +8,12 @@ TagManager:
   - Waypoints
   - Room
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
   - Up
   - Left
   - Down
   - Right
 >>>>>>> Stashed changes
-=======
->>>>>>> parent of 576a43e (Merge pull request #4 from engincandanabas/Serkan)
 =======
 >>>>>>> parent of 576a43e (Merge pull request #4 from engincandanabas/Serkan)
   layers:
