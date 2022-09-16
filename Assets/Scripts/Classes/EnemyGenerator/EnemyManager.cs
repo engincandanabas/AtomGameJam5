@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class EnemyManager : Enemy
 {
@@ -10,14 +9,9 @@ public class EnemyManager : Enemy
     public Type[] _cinsiyetler;
     public Type[] _silahlar;
 
-    public GameObject floatingPoint;
     string silahName;
 
     [SerializeField] private HeroManager _target;
-
-    private int mevcutCan;
-    
-
     void Awake()
     {
         SetupEnemy();
@@ -26,37 +20,13 @@ public class EnemyManager : Enemy
     }
     void Start()
     {
-        mevcutCan = this.can;
 
     }
     void Update()
     {
 
-        if (can == mevcutCan)
-        {
-
-        }
-        else
-        {
-            GameObject popup = Instantiate(floatingPoint, transform.position, Quaternion.identity);
-           
-            mevcutCan = this.can;
-            Destroy(popup, 20f);
-        }
     }
 
-    public void Setup(int damageAmount,string situation)
-    {
-        
-        if (damageAmount == -1)
-        {
-            floatingPoint.GetComponent<TextMeshPro>().SetText(situation);
-        }
-        else
-        {
-            floatingPoint.GetComponent<TextMeshPro>().SetText(damageAmount.ToString());
-        }
-    }
     void SetupEnemy()
     {
         var _irk=_irklar[Random.Range(0,_irklar.Length)];
@@ -89,7 +59,6 @@ public class EnemyManager : Enemy
         {
             if (Random.Range(0, etki) > _target.kacinma) // ıska mı değil mi 
             {     // target a hasar ver 
-                Setup(etki,"a");
                 _target.can -= (etki - _target.defans);
                 Debug.Log(_target.name + " canı " + _target.can.ToString());
                 if (_target.can <= 0)
@@ -97,8 +66,6 @@ public class EnemyManager : Enemy
             }
             else
             {
-                Setup(-1, "Miss");
-                Instantiate(floatingPoint, _target.transform.position, Quaternion.identity);
                 Debug.Log(_target.name + " kaçındı");
             }
 
@@ -108,7 +75,6 @@ public class EnemyManager : Enemy
             if (Random.Range(0, 10) == 5)   // Rastgele bir sayı
             {
                 // target a hasar ver 
-                Setup(etki, "a");
                 _target.can -= (etki - _target.defans);
                 Debug.Log(_target.name + " canı " + _target.can.ToString());
                 if (_target.can <= 0)
