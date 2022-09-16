@@ -35,8 +35,35 @@ public class HeroManager : MonoBehaviour
     }
     public IEnumerator Attack()
     {
+        Debug.Log(_heroScriptable.name);
 
-        
+        if (this.yakin_etki - _target.kacinma > 0)
+        {
+            if (Random.Range(0, yakin_etki) > _target.kacinma) // ıska mı değil mi 
+            {     // target a hasar ver 
+                _target.can -= (yakin_etki - _target.defans);
+                Debug.Log(_target.name + " canı " + _target.can.ToString());
+                if (_target.can <= 0)
+                    Destroy(_target.gameObject);
+            }
+            else
+            {
+                Debug.Log(_target.name + " kaçındı");
+            }
+
+        }
+        else
+        {
+            if (Random.Range(0, 10) == 5)   // Rastgele bir sayı
+            {
+                // target a hasar ver 
+                _target.can -= (yakin_etki - _target.defans);
+                Debug.Log(_target.name + " canı " + _target.can.ToString());
+                if (_target.can <= 0)
+                    Destroy(_target.gameObject);
+            }
+        }
+
         // atak bitti 
         yield return new WaitForSeconds(1);
         StartCoroutine(_target.Attack());
