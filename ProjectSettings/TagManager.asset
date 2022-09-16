@@ -7,6 +7,14 @@ TagManager:
   - Waypoints
   - Room
   - Door
+<<<<<<< Updated upstream
+=======
+  - Right
+  - Down
+  - Left
+  - Up
+  - Hero
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
